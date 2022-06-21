@@ -26,13 +26,29 @@ class AuthInterceptor(grpc.ServerInterceptor):
 
         self._deny = grpc.unary_unary_rpc_method_handler(deny)
 
+
+    def validate_party(self, party_index, meta, continuation, handler_call_details):
+        if meta and meta[0].value == self._valid_metadata[1][party_index]:
+            return continuation(handler_call_details)
+            #return self._deny
+        else:
+            logging.info(f"denied: {meta[0].value} vs {self._valid_metadata[party_index]}, {self._valid_metadata}")
+            return self._deny
+
+
     def intercept_service(self, continuation, handler_call_details):
         meta = handler_call_details.invocation_metadata
 
-        if meta and meta[0] == self._valid_metadata:
-            return continuation(handler_call_details)
+        method = handler_call_details.method.split("/")[2]
+
+        if method == "test0":
+            return self.validate_party(0, meta, continuation, handler_call_details)
+        elif method == "test1":
+            return self.validate_party(1, meta, continuation, handler_call_details)
         else:
-            return self._deny
+            raise Exception(f"got method: {handler_call_details.method}, {method}")
+
+
 
 
 def run():
@@ -52,7 +68,8 @@ def run():
     server = grpc.server(
         futures.ThreadPoolExecutor(max_workers=constants.SERVER_MAX_WORKER),
         options=options,
-        interceptors=(AuthInterceptor('access_key'),)
+        interceptors=(AuthInterceptor(['mytoken0', 'mytoken1']),)
+        # interceptors=(AuthInterceptor('mytoken'),)
     )
     myserver_pb2_grpc.add_MyServerServicer_to_server(MyServerService(), server)
     #server.add_insecure_port(f"[::]:{constants.SERVER_PORT}")

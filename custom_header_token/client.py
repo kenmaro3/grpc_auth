@@ -31,7 +31,7 @@ if __name__ == "__main__":
     grpc.composite_channel_credentials(
         grpc.ssl_channel_credentials(trusted_certs),
         grpc.metadata_call_credentials(
-            GrpcAuth('access_key')
+            GrpcAuth('mytoken1')
         )
     )
 )
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     # channel = grpc.insecure_channel('localhost:5555', options=[])
     stub = myserver_pb2_grpc.MyServerStub(channel)
 
-    res = stub.test1(message_pb2.PB_Message())
+    res = stub.test0(message_pb2.PB_Message())
 
     print(f"res: {res.message}")
 
