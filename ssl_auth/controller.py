@@ -6,6 +6,8 @@ import os
 import sys
 import numpy as np
 
+sys.path.append("../")
+
 from grpc_service import myserver_pb2
 from grpc_service import myserver_pb2_grpc
 

@@ -2,3 +2,4 @@ grpc_service
 logs
 server.crt
 server.key
+__pycache__
