@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "model/message.proto";
+
+service MyServer{
+  rpc test1(PB_Message) returns (PB_Message){};
+}
+
+
