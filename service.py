@@ -29,3 +29,15 @@ class MyServerService(myserver_pb2_grpc.MyServerServicer):
         print(request.message)
 
         return  message_pb2.PB_Message(message="result from 1!")
+
+    def test2(self, request, context):
+        for el in request:
+            print(el.message)
+
+        return  message_pb2.PB_Message(message="result from 2!")
+
+    def test3(self, request, context):
+        print(request.message)
+
+        for i in range(5):
+            yield message_pb2.PB_Message(message=f"result from 3! {i} th loop")

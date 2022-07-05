@@ -5,6 +5,8 @@ import "model/message.proto";
 service MyServer{
   rpc test0(PB_Message) returns (PB_Message){};
   rpc test1(PB_Message) returns (PB_Message){};
+  rpc test2(stream PB_Message) returns (PB_Message){};
+  rpc test3(PB_Message) returns (stream PB_Message){};
 }
 
 
