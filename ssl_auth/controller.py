@@ -4,7 +4,6 @@ import grpc
 import json
 import os
 import sys
-import numpy as np
 
 sys.path.append("../")
 
