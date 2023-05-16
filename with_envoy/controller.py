@@ -11,7 +11,6 @@ from grpc_service import myserver_pb2
 from grpc_service import myserver_pb2_grpc
 
 from service import MyServerService
-import constants
 
 from log import logging
 logger = logging.getLogger(__name__)
