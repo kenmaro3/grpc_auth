@@ -9,6 +9,8 @@ WORKDIR /app
 RUN git clone https://github.com/kenmaro3/grpc_auth.git
 
 COPY run.sh ./
+COPY with_envoy ./with_envoy
+COPY service.py ./service.py
 
 RUN cd grpc_auth && cd proto && sh run.sh && cp -r grpc_service /app/
 
