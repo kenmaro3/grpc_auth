@@ -12,9 +12,6 @@ from grpc_service import myserver_pb2_grpc
 
 from service import MyServerService
 
-from log import logging
-logger = logging.getLogger(__name__)
-
 
 def run():
     options = [
@@ -31,7 +28,7 @@ def run():
     server.add_insecure_port(f"[::]:{5001}")
     server.start()
 
-    logger.info(f"[MyServerControllergRPC] Init okay at: 5001")
+    print(f"[MyServerControllergRPC] Init okay at: 5001")
 
     server.wait_for_termination()
 
