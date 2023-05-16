@@ -14,5 +14,6 @@ RUN cd grpc_auth && cd proto && sh run.sh && cp -r grpc_service /app/
 
 RUN chmod +x /app/run.sh
 
-#CMD ["/app/run.sh"]
-CMD ["tail", "-f", "/app/run.sh"]
+#CMD ["cd", "grpc_auth/with_envoy", "&&", "python3", "controller.py"]
+CMD ["/app/run.sh"]
+#CMD ["tail", "-f", "/app/run.sh"]

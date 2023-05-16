@@ -1,1 +1,1 @@
-cd with_envoy && python3 controller.py
+python3 grpc_auth/with_envoy/controller.py

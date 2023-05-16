@@ -32,11 +32,7 @@ def run():
     server.add_insecure_port(f"[::]:{5001}")
     server.start()
 
-    logger.info(f"[MyServerControllergRPC] Init okay at: {constants.SERVER_PORT}")
-    logger.info(
-        f"[MyServerControllergRPC] max_message_length: {constants.GRPC_MAX_MESSAGE_LENGTH}"
-        + f", max_worker: {constants.SERVER_MAX_WORKER}"
-    )
+    logger.info(f"[MyServerControllergRPC] Init okay at: 5001")
 
     server.wait_for_termination()
 
