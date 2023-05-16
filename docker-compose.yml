@@ -2,15 +2,14 @@ version: '2'
 
 services:
   envoy:
-    build: ./envoy
-    ports:
-      - '5555:5555'
+    image: my_envoy
+    ports: ['5555:5555']
     links:
-      - server
+      - my_grpc
     networks:
       - test
 
-  server:
+  my_grpc:
     ports: ['5001:5001']
     image: my_grpc
     tty: true

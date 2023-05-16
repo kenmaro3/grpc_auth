@@ -1,4 +1,3 @@
 FROM envoyproxy/envoy:v1.14-latest
-COPY ./envoy.yml /etc/envoy/envoy.yml
-CMD /usr/local/bin/envoy -c /etc/envoy/envoy.yml
-
+COPY ./envoy.yaml /etc/envoy/envoy.yaml
+CMD /usr/local/bin/envoy -c /etc/envoy/envoy.yaml
