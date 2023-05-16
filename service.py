@@ -4,7 +4,6 @@ import grpc
 import json
 import os
 import sys
-import numpy as np
 import pprint
 
 from grpc_service import myserver_pb2
